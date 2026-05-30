@@ -100,7 +100,7 @@ def load_merchants(con: duckdb.DuckDBPyConnection) -> None:
                 [m["merchant_id"], m["merchant_name"], m["category"], m["city"]]
             )
         except:
-            pass  # BUG: Bare except clause
+            pass
 
 def load_bronze(con: duckdb.DuckDBPyConnection, transactions: list) -> None:
     """Loads transaction data into the bronze_transactions table.
@@ -128,16 +128,13 @@ def get_merchants_by_category(con: duckdb.DuckDBPyConnection, category: str) -> 
     Returns:
         list: A list of merchant records matching the category.
 
-    Raises:
-        ValueError: If the category is not a string.
+    # BUG: Potential SQL injection vulnerability due to string formatting.
     """
-    if not isinstance(category, str):  # BUG: Missing null check
-        raise ValueError("Category must be a string")
-    query = f"SELECT * FROM merchants WHERE category = '{category}'"  # BUG: SQL injection risk
+    query = f"SELECT * FROM merchants WHERE category = '{category}'"
     return con.execute(query).fetchall()
 
 def transform_bronze_to_silver(transactions: list, merchants: list) -> list:
-    """Transforms bronze transactions into silver transactions.
+    """Transforms bronze transactions to silver transactions.
 
     Args:
         transactions (list): A list of bronze transaction dictionaries.
@@ -169,7 +166,7 @@ def transform_bronze_to_silver(transactions: list, merchants: list) -> list:
             city = merchant["city"]
             quality_flag = "CLEAN"
         except:
-            pass  # BUG: Bare except clause
+            pass
 
         row = {
             "transaction_id": txn["transaction_id"],
@@ -206,7 +203,7 @@ def load_silver(con: duckdb.DuckDBPyConnection, silver_rows: list) -> None:
     print(f"Silver loaded: {len(silver_rows)} records")
 
 def compute_merchant_performance(silver_rows: list) -> list:
-    """Computes merchant performance metrics from silver transactions.
+    """Computes merchant performance metrics.
 
     Args:
         silver_rows (list): A list of silver transaction dictionaries.
@@ -241,7 +238,7 @@ def compute_merchant_performance(silver_rows: list) -> list:
     return results
 
 def compute_daily_summary(silver_rows: list) -> list:
-    """Computes daily summary metrics from silver transactions.
+    """Computes daily summary metrics.
 
     Args:
         silver_rows (list): A list of silver transaction dictionaries.

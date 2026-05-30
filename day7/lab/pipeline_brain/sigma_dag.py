@@ -1,8 +1,7 @@
 from airflow import DAG
-from airflow.operators.python import PythonOperator
+from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
 import logging
-import json
 
 default_args = {
     'owner': 'data-engineering',
@@ -12,36 +11,37 @@ default_args = {
 }
 
 def on_failure_callback(context):
-    """Logs failure details."""
     dag_id = context['dag'].dag_id
     task_id = context['task_instance'].task_id
     execution_date = context['execution_date']
     error_message = context['exception']
-    logging.error(f"DAG: {dag_id}, Task: {task_id}, Execution Date: {execution_date}, Error: {error_message}")
+    logging.error(f"Dag ID: {dag_id}, Task ID: {task_id}, Execution Date: {execution_date}, Error: {error_message}")
 
 def sla_miss_callback(context):
-    """Sends alert for SLA miss."""
     dag_id = context['dag'].dag_id
     execution_date = context['execution_date']
-    logging.warning(f"DAG: {dag_id}, Execution Date: {execution_date}, SLA Miss")
+    logging.warning(f"Dag ID: {dag_id}, Execution Date: {execution_date}, SLA Miss")
 
 def extract_bronze(**context):
-    """Ingest raw CSVs to Bronze Parquet."""
-    logging.info("Starting extract_bronze task")
-    # Add your code here
-    logging.info("Ending extract_bronze task")
+    """Read raw CSV files and write as Bronze Parquet."""
+    logging.info(f"Starting Bronze extraction for {context['execution_date']}")
+    # CSV reading and Parquet writing logic here
+    logging.info(f"Completed Bronze extraction for {context['execution_date']}")
+    raise Exception("Simulated failure")  # For testing failure handling
 
 def transform_silver(**context):
-    """Clean, enrich, deduplicate to Silver."""
-    logging.info("Starting transform_silver task")
-    # Add your code here
-    logging.info("Ending transform_silver task")
+    """Transform Bronze data to Silver."""
+    logging.info(f"Starting Silver transformation for {context['execution_date']}")
+    # Data transformation logic here
+    logging.info(f"Completed Silver transformation for {context['execution_date']}")
+    raise Exception("Simulated failure")  # For testing failure handling
 
 def build_gold(**context):
-    """Generate the 3 Gold aggregation tables."""
-    logging.info("Starting build_gold task")
-    # Add your code here
-    logging.info("Ending build_gold task")
+    """Build Gold aggregation tables."""
+    logging.info(f"Starting Gold build for {context['execution_date']}")
+    # Aggregation logic here
+    logging.info(f"Completed Gold build for {context['execution_date']}")
+    raise Exception("Simulated failure")  # For testing failure handling
 
 with DAG(
     dag_id='sigma_transaction_pipeline',

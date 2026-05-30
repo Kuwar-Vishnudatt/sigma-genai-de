@@ -17,11 +17,11 @@ stg_fact_transactions:
         - accepted_values:
             values: ['COMPLETED', 'FAILED', 'PENDING']
     merchant_id:
-      description: "Foreign key to dim_merchant"
+      description: "Foreign key referencing dim_merchant"
       tests:
         - not_null
     customer_id:
-      description: "Foreign key to dim_customer"
+      description: "Foreign key referencing dim_customer"
       tests:
         - not_null
     transaction_date:
@@ -62,9 +62,9 @@ stg_dim_customer:
     customer_name:
       description: "Name of the customer"
     email:
-      description: "Email of the customer"
+      description: "Email address of the customer"
     tier:
-      description: "Tier of the customer (GOLD, SILVER, BRONZE)"
+      description: "Customer tier (GOLD, SILVER, BRONZE)"
       tests:
         - accepted_values:
             values: ['GOLD', 'SILVER', 'BRONZE']
