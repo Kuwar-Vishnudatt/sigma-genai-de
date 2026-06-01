@@ -72,10 +72,10 @@ except ImportError as e:
 try:
     import great_expectations as gx
     GE_AVAILABLE = True
-except (ImportError, TypeError, Exception):
+except ImportError:
     GE_AVAILABLE = False
-    print("[WARN] great_expectations is not fully compatible or installed on this Python version.")
-    print("       Continuing without GE — built-in robust pandas checks will be used instead.")
+    print("[WARN] great_expectations not installed. Run: pip install great_expectations")
+    print("       Continuing without GE — expectation suite will be generated but not executed.")
 
 DATA_DIR   = os.path.join(os.path.dirname(__file__), "data")
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "agent_outputs")
