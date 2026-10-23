@@ -1,6 +1,6 @@
 # Sigma Intelligence Platform — GenAI for Data Engineering
 
-**Proof of Concept (POC) | Sigmoid Bangalore | 2026**
+**Proof of Concept (POC) **
 
 ---
 
