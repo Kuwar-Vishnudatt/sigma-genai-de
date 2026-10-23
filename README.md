@@ -1,100 +1,97 @@
 # Sigma Intelligence Platform — GenAI for Data Engineering
 
-**Sigmoid Bangalore | May–Jun 2026 | DevPro Academy**
+**Proof of Concept (POC) | Sigmoid Bangalore | 2026**
 
 ---
 
-## What This Is
+## Overview
 
-An 8-day hands-on bootcamp where you build a **production-grade AI-native Data Engineering platform** — one layer per day. By Day 13, you have a complete system with SQL review, pipeline generation, data quality monitoring, and autonomous agents.
+This repository contains a proof of concept for an AI-native Data Engineering platform. It explores how generative AI and agentic workflows can support key data engineering activities such as SQL review, pipeline generation, data quality validation, governance, lineage, and self-healing.
+
+The components in this repository are experimental and intended to demonstrate possible platform capabilities. They are not presented as a production-ready system.
+
+## POC Objectives
+
+The POC investigates how GenAI can help with:
+
+- Reviewing and improving SQL queries
+- Generating data pipelines from natural-language specifications
+- Creating dbt models and data engineering scaffolding
+- Validating data quality and identifying anomalies
+- Detecting sensitive and personally identifiable information (PII)
+- Building metadata, lineage, and catalogue information
+- Using agents to diagnose and remediate pipeline issues
+- Providing natural-language interfaces for data engineering workflows
 
 ## Quick Start
 
 ```bash
-# 1. Fork this repo (click Fork button on GitHub)
-# 2. Clone YOUR fork
-git clone https://github.com/YOUR-USERNAME/sigma-genai-de.git
+# Clone the repository
+git clone https://github.com/Kuwar-Vishnudatt/sigma-genai-de.git
 cd sigma-genai-de
 
-# 3. Add trainer's repo as upstream
-git remote add upstream https://github.com/devproacademy/sigma-genai-de.git
-
-# 4. Install base dependencies
+# Install base dependencies
 pip install -r setup/requirements.txt
-
-# 5. Pull latest materials (do this every morning)
-git pull upstream main
 ```
 
-## Daily Workflow
+Individual POC components may have additional dependencies and setup instructions in their respective directories.
 
-```bash
-# Morning (get today's materials)
-git pull upstream main
-cd dayN/lab/
+## POC Areas
 
-# During class (code along)
-python script_name.py
-# or
-streamlit run app.py
+| Area | Focus |
+|-----|-------|
+| SQL Brain | AI-assisted SQL review, NL2SQL, and dbt scaffolding |
+| Pipeline Brain | PySpark and Airflow pipeline generation from English specifications |
+| DevOps Brain | Automated tests, GitHub Actions CI/CD, and documentation generation |
+| Quality Brain | Data quality validation, log analysis, and RAG-based assistance |
+| Agent Core | ReAct and LangGraph-based agent workflows |
+| Governance Agent | Data ingestion, PII detection, lineage, and catalogue generation |
+| Self-Healing and Natural Language | Automated remediation and English-to-SQL interaction |
+| Integration | Demonstration of how the individual capabilities can work together |
 
-# End of day (submit your work)
-git add .
-git commit -m "Day N complete — Your Name"
-git push origin main
+## Repository Structure
+
+```text
+├── setup/              ← Base environment setup
+├── day6/               ← SQL review and data engineering foundations
+├── day7/               ← Pipeline generation
+├── day8/               ← Testing, CI/CD, and documentation
+├── day9/               ← Data quality and RAG workflows
+├── day10/              ← Agentic AI workflows
+├── day11/              ← Intelligent ingestion and governance
+├── day12/              ← Self-healing and natural-language workflows
+├── day13/              ← Platform integration
+└── capstone/           ← Integrated POC demonstrations
 ```
 
-## The Journey
+Each component may include implementation code, sample data, configuration, and a README with specific execution instructions.
 
-| Day | Module | What You Build |
-|-----|--------|---------------|
-| **6** | SQL Brain | AI code reviewer + NL2SQL pipeline + dbt scaffolding |
-| **7** | Pipeline Brain | PySpark + Airflow DAG from English spec |
-| **8** | DevOps Brain | pytest suite + GitHub Actions CI/CD + auto-docs |
-| **9** | Quality Brain | Great Expectations + log analysis + RAG chatbot |
-| **10** | Agent Core | ReAct agent + LangGraph (THE pivot day) |
-| **11** | Governance Agent | Auto-ingest + PII detection + lineage + catalogue |
-| **12** | Self-Heal + NL | Self-healing agent + English→SQL interface |
-| **13** | Integration | Wire it all together + architecture presentations |
-| **14** | Capstone Build | Team project (randomly assigned option) |
-| **15** | Demo Day | Live presentations to panel |
-
-## Repo Structure
-
-```
-├── setup/              ← One-time environment setup
-├── day6/
-│   ├── lab/            ← Skeleton code (you fill in during class)
-│   ├── solutions/      ← Complete code (released next morning)
-│   └── demo/           ← Streamlit demo app (trainer shows)
-├── day7/
-...
-├── day15/
-└── capstone/           ← Your team's capstone project (Days 14-15)
-```
-
-## Rules
-
-1. **Push every day.** Your commit history = your portfolio proof.
-2. **No API keys in code.** Use environment variables or `.env` files (gitignored).
-3. **Skeletons have TODOs.** Fill them in during class. Don't copy from solutions.
-4. **Solutions release next morning.** If you fall behind, pull and study.
-5. **Capstone is YOUR work.** You can look at other forks, but submit your own code.
-
-## Tools Used
+## Technology Stack
 
 | Purpose | Tool |
 |---------|------|
-| LLM (primary) | AWS Bedrock Nova Lite/Pro |
-| Agent framework | LangGraph (Day 10+) |
+| LLM | AWS Bedrock Nova Lite/Pro |
+| Agent framework | LangGraph |
 | Data modelling | dbt Core |
 | Data quality | Great Expectations |
 | Testing | pytest |
 | CI/CD | GitHub Actions |
 | Warehouse | Snowflake |
-| Fallback LLM | Ollama (qwen2.5:7b) |
+| Local/fallback LLM | Ollama (qwen2.5:7b) |
 | Editor | VS Code |
+
+## Scope and Limitations
+
+- This repository is a technical POC intended for exploration and demonstration.
+- The examples may require adaptation before use in a production environment.
+- Model outputs should be reviewed and validated before being applied to data or infrastructure.
+- API keys and credentials must be provided through environment variables or local configuration and must not be committed to the repository.
+- Performance, security, cost, and operational characteristics have not been fully evaluated.
+
+## Status
+
+The POC is under active development. Features and implementations may change as different GenAI approaches are evaluated.
 
 ---
 
-*DevPro Academy | Sigmoid Bangalore | GenAI for Data Engineering 2026*
+*GenAI for Data Engineering POC | Sigmoid Bangalore | 2026*
